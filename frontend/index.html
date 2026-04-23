@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">📋 Task Planner</h1>
+                <p class="tagline">Organize and schedule your tasks with dependencies</p>
+                <div class="theme-switch" aria-label="Theme settings">
+                    <label for="themeSelect">Theme</label>
+                    <select id="themeSelect" class="theme-select">
+                        <option value="classic">Shaurya</option>
+                        <option value="baby-pink">Ananya</option>
+                        <option value="grey">Sarvesh</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="card input-section">
+                <h2>Add New Task</h2>
+                <div class="input-form">
+                    <div class="input-group">
+                        <input 
+                            id="taskInput" 
+                            type="text" 
+                            placeholder="Enter task name..." 
+                            class="input-field"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="priorityInput" class="input-field">
+                                <option value="low">🟢 Low</option>
+                                <option value="medium" selected>🟡 Medium</option>
+                                <option value="high">🔴 High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Due Date</label>
+                            <input 
+                                id="dueDateInput" 
+                                type="date" 
+                                class="input-field"
+                            >
+                        </div>
+                    </div>
+                    <button onclick="addTask()" class="btn btn-primary">
+                        <span class="btn-icon">+</span> Add Task
+                    </button>
+                </div>
+            </section>
+
+            <!-- Dependency Section -->
+            <section class="card dependency-section">
+                <h2>Define Dependencies</h2>
+                <div class="dependency-inputs">
+                    <div class="input-group">
+                        <select id="from" class="input-field">
+                            <option value="">From task...</option>
+                        </select>
+                        <span class="arrow">→</span>
+                        <select id="to" class="input-field">
+                            <option value="">To task...</option>
+                        </select>
+                    </div>
+                    <button onclick="addDependency()" class="btn btn-secondary">
+                        Add Dependency
+                    </button>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section class="card schedule-section">
+                <div class="schedule-header">
+                    <h2>Task Schedule</h2>
+                    <button onclick="getSchedule()" class="btn btn-accent">
+                        Generate Schedule
+                    </button>
+                </div>
+                <div id="scheduleContainer" class="schedule-container">
+                    <p class="empty-state">Click "Generate Schedule" to see the task order</p>
+                </div>
+            </section>
+
+            <!-- Tasks List Section -->
+            <section class="card tasks-section">
+                <h2>All Tasks</h2>
+                <div id="tasksContainer" class="tasks-grid">
+                    <p class="empty-state">No tasks yet. Add one to get started!</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Task Planner. Built with care.</p>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
