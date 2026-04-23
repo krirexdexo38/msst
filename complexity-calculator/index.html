@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Complexity Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Algorithm Complexity Calculator</h1>
+            <p>Analyze time and space complexity of your algorithms</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="analyze">Analyze</button>
+            <button class="tab-button" data-tab="learn">Learn</button>
+            <button class="tab-button" data-tab="compare">Compare</button>
+        </nav>
+
+        <div id="analyze-tab" class="tab-content active">
+            <div class="input-section">
+                <h2>Code Input</h2>
+                <textarea id="codeInput" placeholder="Paste your code here (Python or pseudocode)"></textarea>
+                <div class="examples">
+                    <button class="example-btn" data-example="linear">O(n) - Linear Search</button>
+                    <button class="example-btn" data-example="quadratic">O(n²) - Bubble Sort</button>
+                    <button class="example-btn" data-example="logarithmic">O(log n) - Binary Search</button>
+                    <button class="example-btn" data-example="exponential">O(2^n) - Fibonacci Recursive</button>
+                </div>
+                <button id="analyzeBtn" class="analyze-btn">Analyze Complexity</button>
+            </div>
+
+            <div class="results-section">
+                <h2>Analysis Results</h2>
+                <div id="results" class="results">
+                    <div class="complexity-display">
+                        <div class="time-complexity">
+                            <h3>Time Complexity</h3>
+                            <span id="timeComplexity" class="complexity-value">O(?)</span>
+                        </div>
+                        <div class="space-complexity">
+                            <h3>Space Complexity</h3>
+                            <span id="spaceComplexity" class="complexity-value">O(?)</span>
+                        </div>
+                    </div>
+                    <div class="explanation">
+                        <h3>Explanation</h3>
+                        <p id="explanation">Click "Analyze Complexity" to see the analysis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization-section">
+                <h2>Complexity Visualization</h2>
+                <canvas id="complexityChart"></canvas>
+            </div>
+        </div>
+
+        <div id="learn-tab" class="tab-content">
+            <h2>Learn About Complexity</h2>
+            <div class="learn-content">
+                <div class="complexity-type" data-type="constant">
+                    <h3>O(1) - Constant Time</h3>
+                    <p>Operations that take the same amount of time regardless of input size.</p>
+                    <pre><code>def get_first(arr):
+    return arr[0]</code></pre>
+                </div>
+                <div class="complexity-type" data-type="linear">
+                    <h3>O(n) - Linear Time</h3>
+                    <p>Time grows linearly with input size.</p>
+                    <pre><code>def linear_search(arr, target):
+    for item in arr:
+        if item == target:
+            return True
+    return False</code></pre>
+                </div>
+                <div class="complexity-type" data-type="logarithmic">
+                    <h3>O(log n) - Logarithmic Time</h3>
+                    <p>Time grows slowly even for large inputs.</p>
+                    <pre><code>def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1</code></pre>
+                </div>
+                <div class="complexity-type" data-type="quadratic">
+                    <h3>O(n²) - Quadratic Time</h3>
+                    <p>Time grows quadratically - nested loops.</p>
+                    <pre><code>def bubble_sort(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr) - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]</code></pre>
+                </div>
+                <div class="complexity-type" data-type="exponential">
+                    <h3>O(2^n) - Exponential Time</h3>
+                    <p>Time doubles with each additional input element.</p>
+                    <pre><code>def fibonacci_recursive(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div id="compare-tab" class="tab-content">
+            <h2>Compare Algorithms</h2>
+            <div class="compare-section">
+                <div class="code-input">
+                    <h3>Algorithm 1</h3>
+                    <textarea id="code1" placeholder="Paste first algorithm"></textarea>
+                </div>
+                <div class="code-input">
+                    <h3>Algorithm 2</h3>
+                    <textarea id="code2" placeholder="Paste second algorithm"></textarea>
+                </div>
+            </div>
+            <button id="compareBtn" class="analyze-btn">Compare Complexities</button>
+            <div id="compareResults" class="compare-results"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
